@@ -3,6 +3,9 @@ import { Resvg } from '@resvg/resvg-js';
 import NotoSans from '$lib/NotoSans-Regular.ttf';
 import { html as toReactNode } from 'satori-html';
 import Card from '$lib/Card.svelte';
+import { read } from '$app/server';
+
+const fontData = read(NotoSans).arrayBuffer();
 
 const height = 630;
 const width = 1200;
@@ -17,7 +20,7 @@ export const GET = async ({ url }) => {
 		fonts: [
 			{
 				name: 'Noto Sans',
-				data: Buffer.from(NotoSans),
+				data: await fontData,
 				style: 'normal'
 			}
 		],
